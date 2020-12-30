@@ -4,7 +4,18 @@
 //"WIN" - Player robot has defeated all enemy-robots
 //  *Fight all enemy-robots
 //  *Defeat each enemy-robot
+
 //"LOSE" - Player robot's health is zero or less
+
+//"PLAY AGAIN"- Player robot has defeated all enemy-robots or Player robot has died
+// *display alert asking to play again
+// *If 'yes', call fight function again
+// *If 'no' break out;
+
+//"VISIT SHOP"- after player defeats an enemy robot or skips and enemy robot, alert to visit shop
+// *display shop options
+
+
 
 //window prompt to obtain Robot name
 
@@ -82,25 +93,60 @@ var fight = function(enemyName) {
     }
 };
 
-for (var i = 0; i < enemyNames.length; i++) {
-    if (playerHealth > 0) {
-        // let player know what round they are in
-        window.alert('Welcome to Robot Gladiators Round ' + (i + 1) + '!');
 
-        //pick new enemy to fight based on the array
-        var pickedEnemyName = enemyNames[i];
+//Function to start new game
+var startGame = function() {
+    //reset player stats
+    playerHealth = 100;
+    playerAttack = 10;
+    playerMoney = 10;
 
-        //reset enemyHealth before starting new fight
-        enemyHealth = 50;
+    for (var i = 0; i < enemyNames.length; i++) {
+        if (playerHealth > 0) {
+            // let player know what round they are in
+            window.alert('Welcome to Robot Gladiators Round ' + (i + 1) + '!');
 
-        //debugger to pause script 
-        //debugger;
+            //pick new enemy to fight based on the array
+            var pickedEnemyName = enemyNames[i];
 
-        //call fight function with enemy-robot
-        fight(pickedEnemyName);
-    }else {
-        window.alert('You have lost your robot in battle! Game Over!');
-        break;
+            //reset enemyHealth before starting new fight
+            enemyHealth = 50;
+
+            //debugger to pause script 
+            //debugger;
+
+            //call fight function with enemy-robot
+            fight(pickedEnemyName);
+        } else {
+            window.alert('You have lost your robot in battle! Game Over!');
+            break;
+        }
     }
+    //play again
+    endGame();
+};
 
-}
+//function to end entire game
+var endGame = function() {
+    //if player is still alive, player wins!
+    if (playerHealth > 0) {
+        window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + ".");
+    }
+    else {
+        window.alert("You've lost your robot in battle.");
+    };
+
+    var playAgainConfirm = window.confirm("Would you like to play again?");
+
+    if (playAgainConfirm) {
+        //restart the game
+        startGame();
+    }
+    else {
+        window.alert("Thank you for playing Robot Gladiators! Come back soon!");
+    }
+};
+
+
+//Start the game when the page loads
+startGame();
