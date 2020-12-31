@@ -121,7 +121,7 @@ var fight = function(enemy) {
 //Function to start new game
 var startGame = function() {
     //reset player stats
-    playerInfo.reset
+    playerInfo.reset();
 
     for (var i = 0; i < enemyInfo.length; i++) {
         if (playerInfo.health > 0) {
@@ -149,10 +149,6 @@ var startGame = function() {
                     shop();
                 }
             }
-
-        } else {
-            window.alert('You have lost your robot in battle! Game Over!');
-            break;
         }
     }
     //play again
@@ -164,6 +160,20 @@ var endGame = function() {
     //if player is still alive, player wins!
     if (playerInfo.health > 0) {
         window.alert("Great job, you've survived the game! You now have a score of " + playerInfo.money + ".");
+
+        //check localStorage for high score, if none exist set to 0
+        var highScore = localStorage.getItem("highscore");
+        if (highScore === null) {
+            highScore = 0;
+        }
+
+        if (highScore > playerInfo.money) {
+            window.alert("So sorry! You did not beat the current high score of " + highScore + " maybe next time.")
+        } else {
+            localStorage.setItem("highscore", playerInfo.money);
+            localStorage.setItem("name", playerInfo.name);
+            alert("Congratulations! Your have the official high score and have been entered in the hall of fame!");
+        }
     }
     else {
         window.alert("You've lost your robot in battle.");
