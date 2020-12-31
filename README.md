@@ -4,6 +4,9 @@
 
  The deployed game can be found here: [Gladiator's Revenge](https://d-taylor6403.github.io/Gladiators-Revenge/)
 
+ 
+ ![Demo](https://github.com/d-taylor6403/Gladiators-Revenge/blob/main/Gladiator's%20Revenge!.gif)
+
  ## Technologies
 
  The following technologies were used to create this game:
@@ -20,9 +23,6 @@
  * `alert()`
  * `Switch statements`
 
- ## Demonstration
-
- ![Demo](https://github.com/d-taylor6403/Gladiators-Revenge/blob/main/Gladiator's%20Revenge!.gif)
 
  ## Credits
 
